@@ -1,0 +1,36 @@
+<div class="jumbotron">
+    <h1>Angular Graph - Problem 1</h1>
+    <p class="lead">Using Graph API with Angular</p>
+    <div *ngIf="authenticated; then welcomeUser else signInPrompt"></div>
+    <ng-template #welcomeUser>
+      <h4>Welcome {{ user.displayName }}!</h4>
+      <h4>Role {{ user.roles }}!</h4>
+
+      <div *ngIf="role; then showContractorOption else showWorkerOption"></div>
+
+    </ng-template>
+    <ng-template #signInPrompt>
+      <button class="btn btn-primary btn-large" role="button" (click)="signIn()">Click here to sign in</button>
+    </ng-template>
+
+    <ng-template #showContractorOption>
+      <div>
+      <input type="file" id="file-input" #file (change)="onChange(file.files)" multiple />
+    </div>
+    <div>
+      <ul>
+        <li *ngFor="let f of files">{{ f.name }} Uploaded Successfully !!!</li>
+      </ul>
+    </div>
+    </ng-template>
+
+    <ng-template #showWorkerOption>
+        <div>
+          <input type='text' id="search-input" placeholder='Search By Location' class='searchLocation_text'>
+        </div>
+        <div>
+          <input type='submit' value='Search' (click)='doGET($event)'>
+        </div>
+
+    </ng-template>
+  </div>
